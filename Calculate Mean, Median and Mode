@@ -1,0 +1,83 @@
+#include <stdio.h>
+
+// calculate the mean :-
+float calculateMean(int arr[], int n)
+{
+    int sum = 0;
+    for (int i = 0; i < n; i++)
+    {
+        sum += arr[i];
+    }
+    return (float)sum / n;
+}
+
+// calculate the median :-
+
+void sortArray(int arr[], int n)
+{
+    for (int i = 0; i < n - 1; i++)
+    {
+        for (int j = 0; j < n - i - 1; j++)
+        {
+            if (arr[j] > arr[j + 1])
+            {
+                int temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+        }
+    }
+}
+
+float calculateMedian(int arr[], int n)
+{
+    sortArray(arr, n);
+    if (n % 2 == 0)
+    {
+        return (arr[n / 2 - 1] + arr[n / 2]) / 2.0;
+    }
+    else
+        return arr[n / 2];
+}
+
+// calculate the mode :-
+
+int calculateMode(int arr[], int n)
+{
+    int maxCount = 0, mode = arr[0];
+    for (int i = 0; i < n; i++)
+    {
+        int count = 0;
+        for (int j = 0; j < n; j++)
+        {
+            if (arr[j] == arr[i])
+                count++;
+        }
+        if (count > maxCount)
+        {
+            maxCount = count;
+            mode = arr[i];
+        }
+    }
+    return mode;
+}
+
+int main()
+{
+    int numbers[5];
+    for (int i = 0; i < 5; i++)
+    {
+
+        scanf("%d", &numbers[i]);
+    }
+
+    float mean = calculateMean(numbers, 5);
+    float median = calculateMedian(numbers, 5);
+    int mode = calculateMode(numbers, 2);
+
+    printf("Mean: %.2f\n", mean);
+    printf("Median: %.2f\n", median);
+    printf("Mode: %d\n", mode);
+
+    return 0;
+}
