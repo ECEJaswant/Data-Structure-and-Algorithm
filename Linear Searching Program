@@ -1,0 +1,27 @@
+// Write a program to search an element from an Array (Linera Search)
+
+#include <stdio.h>
+
+int main()
+{
+    int array[10] = {12, 43, 24, 5, 3, 56, 7, 1, 66, 77};
+    int element, found = 0;
+    printf("Enter the Element to search: ");
+    scanf("%d", &element);
+
+    for (int i = 0; i < 10; i++)
+    {
+        if (array[i] == element)
+        {
+            found = 1;
+            printf("The Element %d is found at index %d", element, i);
+            break;
+        }
+    }
+    if (!found)
+    {
+        printf("The Element %d is Not found in array", element);
+    }
+
+    return 0;
+}
