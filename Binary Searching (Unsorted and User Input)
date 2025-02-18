@@ -1,0 +1,73 @@
+#include <stdio.h>
+
+// Sorting the Array: 
+
+void sortArray(int arr[], int n)
+{
+    for (int i = 0; i < n - 1; i++)
+    {
+        for (int j = 0; j < n - i - 1; j++)
+        {
+            if (arr[j] > arr[j + 1])
+            {
+                int temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+        }
+    }
+}
+
+// Binary Search Function
+
+int binarySearch(int arr[], int low, int high, int element)
+{
+    while (low <= high)
+    {
+        int mid = low + (high - low) / 2;
+
+        if (arr[mid] == element)
+            return mid;
+        else if (arr[mid] < element)
+            low = mid + 1;
+        else
+            high = mid - 1;
+    }
+    return -1;
+}
+
+int main()
+{
+    int n, element;
+    printf("Enter the No. of Elements in an Array: ");
+    scanf("%d", &n);
+
+    int arr[n];
+    printf("Enter %d Elements: ", n);
+
+    for (int i = 0; i < n; i++)
+    {
+        scanf("%d", &arr[i]);
+    }
+
+    sortArray(arr, n);
+    printf("Sorted Array: ");
+        for(int i=0; i<n; i++){
+            printf("%d ", arr[i]);
+            // printf("\n");
+        }
+
+    printf("\nEnter the Element to search: ");
+    scanf("%d", &element);
+
+    int result = binarySearch(arr, 0, n - 1, element);
+
+    if (result != -1)
+    {
+        printf("Element %d is found at index: %d\n", element, result);
+    }
+    else
+        printf("Element not found. \n");
+
+    return 0;
+}
